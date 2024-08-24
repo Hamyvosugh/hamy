@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
                 template_id: templateId
             },
             success: function(response) {
-                $('#seibuTemplateContainer').html(response);
+                $('#seibuTemplateContainer').html(response); // Targets the container by ID
             },
             error: function() {
                 alert('Failed to load the template. Please try again.');

@@ -5,6 +5,7 @@ wp-config.php
 # Ignore WordPress configuration files
 wp-config.php
 wp-config-sample.php
+debug.log
 
 # Ignore temporary files
 *.log
