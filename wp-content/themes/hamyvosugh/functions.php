@@ -75,3 +75,47 @@ if ( ! function_exists( 'hamyvosugh_enqueue_styles' ) ) {
     }
 }
 add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
+
+
+// templ loading
+// Enqueue the custom JavaScript file and pass the AJAX URL
+function enqueue_custom_scripts() {
+    // Register and enqueue your custom JavaScript file
+    wp_enqueue_script(
+        'custom-load-template', // Handle for the script
+        get_template_directory_uri() . '/assets/js/load-template.js', // Path to the script
+        array('jquery'), // Dependencies (jQuery in this case)
+        null, // Version number, null if you want to skip versioning
+        true // Load in the footer
+    );
+
+    // Pass the AJAX URL and other data to the script
+    wp_localize_script('custom-load-template', 'ajax_object', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+// Handle the AJAX request to load the template dynamically
+function load_dynamic_template() {
+    // Get the template ID from the AJAX request
+    $template_id = intval($_POST['template_id']);
+
+    // Check if a valid template ID is provided
+    if ($template_id) {
+        // Load the template content
+        $template_content = \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($template_id);
+        echo $template_content;
+    } else {
+        // Output an error message if the template ID is invalid
+        echo 'Invalid template ID.';
+    }
+
+    // End the AJAX request
+    wp_die();
+}
+add_action('wp_ajax_load_dynamic_template', 'load_dynamic_template');
+add_action('wp_ajax_nopriv_load_dynamic_template', 'load_dynamic_template');
+
+
+/// end of them loading 
