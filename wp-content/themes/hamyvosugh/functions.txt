@@ -1,8 +1,17 @@
 <?php
+// Define the version constant
+if (!defined('HELLO_ELEMENTOR_CHILD_VERSION')) {
+    define('HELLO_ELEMENTOR_CHILD_VERSION', '2.1.0');
+}
+
+// Enqueue styles and fonts
 function hamyvosugh_enqueue_styles() {
-    $parent_style = 'hello-elementor-style'; // Parent theme style handle
+    // Enqueue the parent theme's style.css
+    $parent_style = 'hello-elementor-style';
     wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('hamyvosugh-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style));
+
+    // Enqueue your child theme's style.css
+    wp_enqueue_style('hamyvosugh-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style), HELLO_ELEMENTOR_CHILD_VERSION);
 }
 add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
 
@@ -24,15 +33,6 @@ function hamyvosugh_elementor_full_width_support() {
 }
 add_action('wp', 'hamyvosugh_elementor_full_width_support');
 
-// Ensure Elementor is loaded before your theme
-function hamyvosugh_elementor_load_before_theme() {
-    if (!did_action('elementor/loaded')) {
-        // Elementor is not loaded, stop the theme from executing further.
-        return;
-    }
-}
-add_action('after_setup_theme', 'hamyvosugh_elementor_load_before_theme', 0);
-
 // Support for Elementor Pro's custom header/footer
 function hamyvosugh_register_elementor_locations($elementor_theme_manager) {
     $elementor_theme_manager->register_all_core_location();
@@ -41,66 +41,32 @@ add_action('elementor/theme/register_locations', 'hamyvosugh_register_elementor_
 
 // Remove the title for all pages and posts
 function hamyvosugh_remove_titles($title, $id = null) {
-    if ( is_page() || is_single() ) {
+    if (is_page() || is_single()) {
         return ''; // Return an empty string to remove the title
     }
     return $title;
 }
 add_filter('the_title', 'hamyvosugh_remove_titles', 10, 2);
 
-
-// footer menu
+// Register footer menu
 function hamyvosugh_register_menus() {
     register_nav_menus(
         array(
-            'footer' => __( 'Footer Menu', 'hamyvosugh' ),
+            'footer' => __('Footer Menu', 'hamyvosugh'),
         )
     );
 }
-add_action( 'init', 'hamyvosugh_register_menus' );
+add_action('init', 'hamyvosugh_register_menus');
 
-
-// regoister child them
-function hello_elementor_child_scripts_styles() {
-
-	wp_enqueue_style(
-		'hello-elementor-child-style',
-		get_stylesheet_directory_uri() . '/style.css',
-		[
-			'hello-elementor-theme-style',
-		],
-		HELLO_ELEMENTOR_CHILD_VERSION
-	);
-
-}
-add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
-
-// font
-if ( ! function_exists( 'hamyvosugh_enqueue_styles' ) ) {
-    function hamyvosugh_enqueue_styles() {
-        // Enqueue the parent theme's style.css
-        $parent_style = 'hello-elementor-style';
-        wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
-
-        // Enqueue the Quicksand font from Google Fonts
-        wp_enqueue_style('quicksand-font', 'https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap', array(), null);
-        
-        // Enqueue your child theme's style.css
-        wp_enqueue_style('hamyvosugh-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style));
-    }
-}
-add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
-
-
-// templ loading
+// Load custom scripts for templates
 function enqueue_custom_scripts() {
     // Register and enqueue your custom JavaScript file from the correct theme
     wp_enqueue_script(
-        'custom-load-template', 
+        'custom-load-template',
         get_stylesheet_directory_uri() . '/assets/js/load-template.js', // Use get_stylesheet_directory_uri()
-        array('jquery'), 
-        null, 
-        true 
+        array('jquery'),
+        null,
+        true
     );
 
     // Pass the AJAX URL and other data to the script
@@ -131,20 +97,11 @@ function load_dynamic_template() {
 add_action('wp_ajax_load_dynamic_template', 'load_dynamic_template');
 add_action('wp_ajax_nopriv_load_dynamic_template', 'load_dynamic_template');
 
-/// end of them loading 
-
-/// start functions for saved them edit with elementor 
-
+// Additional Elementor styles
 function my_theme_enqueue_elementor_styles() {
-    if ( did_action( 'elementor/loaded' ) ) {
-        wp_enqueue_style( 'elementor-frontend' );
-        wp_enqueue_style( 'elementor-global' );
+    if (did_action('elementor/loaded')) {
+        wp_enqueue_style('elementor-frontend');
+        wp_enqueue_style('elementor-global');
     }
 }
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_elementor_styles' );
-
-
-function my_theme_add_elementor_support() {
-    add_theme_support( 'elementor' );
-}
-add_action( 'after_setup_theme', 'my_theme_add_elementor_support' );
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_elementor_styles');

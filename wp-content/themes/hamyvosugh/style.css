@@ -41,15 +41,13 @@ html, body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #f8f8f8; /* Optional: Add background color */
     text-align: center;
-    padding: 0px 0;
-    font-size: 5px;
+    padding: 0;
 }
 
 /* Ensure body content starts after the header */
 .main-content {
-    padding-top: 100px; /* Adjust this value based on the actual height of your header */
+    padding-top: 100px;
 }
 
 /* Header styles to ensure it stays on top */
@@ -57,5 +55,5 @@ header {
     position: relative;
     z-index: 10;
     width: 100%;
-    background-color: #fff; /* Adjust as needed */
+    background-color: #fff;
 }
