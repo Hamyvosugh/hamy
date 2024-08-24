@@ -14,7 +14,7 @@ get_header();
 <!-- Apply background color to the entire page -->
 <style>
     body {
-        background-color: #3E6093;
+        background-color: #15365F;
     }
 </style>
 
