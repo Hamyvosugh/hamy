@@ -1,18 +1,38 @@
 <?php
-/*
-Template Name: Sable Template
-*/
+/**
+ * Template Name: Saved Elementor Template
+ * Template Post Type: post, page
+ *
+ * @package WordPress
+ * @subpackage Hello_Elementor_Child
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly
+    exit; // Exit if accessed directly.
 }
 
-// Start the WordPress loop
-if ( have_posts() ) :
-    while ( have_posts() ) : the_post();
+get_header();
 
-        // This is essential for Elementor to work
-        the_content();
+?>
 
-    endwhile;
-endif;
+<div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+        <?php
+        // Display the content of the current page
+        while ( have_posts() ) :
+            the_post();
+
+            the_content();
+
+        endwhile; // End of the loop.
+
+        // Display a specific saved Elementor template using its shortcode
+        echo do_shortcode( '[elementor-template id="YOUR_TEMPLATE_ID"]' );
+        ?>
+
+    </main><!-- #main -->
+</div><!-- #primary -->
+
+<?php
+get_footer();
