@@ -1,10 +1,9 @@
 <footer id="site-footer" class="site-footer" role="contentinfo">
-        <div class="footer-inner">
-            <!-- Footer content here -->
-            <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
-        </div><!-- .footer-inner -->
-    </footer><!-- #site-footer -->
+    <div class="footer-inner">
+        <p>&copy; <?php echo date('F j, Y'); ?> Hamy Vosugh  @All rights reserved.</p>
+    </div><!-- .footer-inner -->
+</footer><!-- #site-footer -->
 
-    <?php wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 </html>

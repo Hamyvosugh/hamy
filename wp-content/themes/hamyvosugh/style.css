@@ -15,3 +15,32 @@ Requires at least: 6.1
 Tested up to: 6.3
 Requires PHP: 8.2
 */
+
+/* Hide all page titles across the entire site */
+.entry-title, 
+.page-title, 
+.post-title {
+    display: none;
+}
+/* Ensure the body takes up the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Wrapper to hold content and footer */
+#page {
+    position: relative;
+    min-height: 100%;
+}
+
+/* Ensure the footer is always at the bottom */
+.site-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8; /* Optional: Add background color */
+    text-align: center;
+    padding: 1px 0;
+}
