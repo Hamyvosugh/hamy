@@ -14,7 +14,6 @@ function hamyvosugh_enqueue_styles() {
     wp_enqueue_style('hamyvosugh-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style), HELLO_ELEMENTOR_CHILD_VERSION);
 }
 add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
-add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
 
 // Ensure theme support for Elementor
 function hamyvosugh_elementor_support() {
@@ -33,15 +32,6 @@ function hamyvosugh_elementor_full_width_support() {
     }
 }
 add_action('wp', 'hamyvosugh_elementor_full_width_support');
-
-// Ensure Elementor is loaded before your theme
-function hamyvosugh_elementor_load_before_theme() {
-    if (!did_action('elementor/loaded')) {
-        // Elementor is not loaded, stop the theme from executing further.
-        return;
-    }
-}
-add_action('after_setup_theme', 'hamyvosugh_elementor_load_before_theme', 0);
 
 // Support for Elementor Pro's custom header/footer
 function hamyvosugh_register_elementor_locations($elementor_theme_manager) {
