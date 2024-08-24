@@ -82,11 +82,11 @@ add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
 function enqueue_custom_scripts() {
     // Register and enqueue your custom JavaScript file
     wp_enqueue_script(
-        'custom-load-template', // Handle for the script
-        get_template_directory_uri() . '/assets/js/load-template.js', // Path to the script
-        array('jquery'), // Dependencies (jQuery in this case)
-        null, // Version number, null if you want to skip versioning
-        true // Load in the footer
+        'custom-load-template', 
+        get_template_directory_uri() . '/assets/js/load-template.js', 
+        array('jquery'), 
+        null, 
+        true 
     );
 
     // Pass the AJAX URL and other data to the script
