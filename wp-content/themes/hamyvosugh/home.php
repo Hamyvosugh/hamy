@@ -9,7 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Load the header template
 get_header();
+?>
 
+<!-- Apply background color to the entire page -->
+<style>
+    body {
+        background-color: #3E6093;
+    }
+</style>
+
+<?php
 // Start the WordPress Loop
 if ( have_posts() ) : 
     while ( have_posts() ) : the_post();
