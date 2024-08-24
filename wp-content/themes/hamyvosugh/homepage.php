@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Homepage no color
+Template Name: Landing
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,10 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<!-- Apply background color to the entire page -->
-<style>
-   
-</style>
+
 
 <?php
 // Start the WordPress Loop
@@ -37,3 +34,4 @@ endif;
 
 // Load the footer template
 get_footer();
+?>
