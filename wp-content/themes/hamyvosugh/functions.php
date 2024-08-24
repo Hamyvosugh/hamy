@@ -78,12 +78,11 @@ add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_styles');
 
 
 // templ loading
-// Enqueue the custom JavaScript file and pass the AJAX URL
 function enqueue_custom_scripts() {
-    // Register and enqueue your custom JavaScript file
+    // Register and enqueue your custom JavaScript file from the correct theme
     wp_enqueue_script(
         'custom-load-template', 
-        get_template_directory_uri() . '/hamyvosugh/assets/js/load-template.js', 
+        get_stylesheet_directory_uri() . '/assets/js/load-template.js', // Use get_stylesheet_directory_uri()
         array('jquery'), 
         null, 
         true 
@@ -112,7 +111,7 @@ function load_dynamic_template() {
     }
 
     // End the AJAX request
-    wp_die();  // Make sure this is included
+    wp_die();
 }
 add_action('wp_ajax_load_dynamic_template', 'load_dynamic_template');
 add_action('wp_ajax_nopriv_load_dynamic_template', 'load_dynamic_template');
