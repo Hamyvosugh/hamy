@@ -22,6 +22,7 @@ Requires PHP: 8.2
 .post-title {
     display: none;
 }
+
 /* Ensure the body takes up the full height of the viewport */
 html, body {
     height: 100%;
@@ -44,4 +45,17 @@ html, body {
     text-align: center;
     padding: 0px 0;
     font-size: 5px;
+}
+
+/* Ensure body content starts after the header */
+.main-content {
+    padding-top: 100px; /* Adjust this value based on the actual height of your header */
+}
+
+/* Header styles to ensure it stays on top */
+header {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    background-color: #fff; /* Adjust as needed */
 }

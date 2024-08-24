@@ -11,11 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<!-- Apply background color to the entire page -->
-<style>
-   
-</style>
-
 <?php
 // Start the WordPress Loop
 if ( have_posts() ) : 
