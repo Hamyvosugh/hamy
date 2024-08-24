@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Homepage
+Template Name: Homepage no color
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
