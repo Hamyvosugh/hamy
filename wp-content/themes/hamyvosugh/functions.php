@@ -119,3 +119,15 @@ add_action('wp_ajax_nopriv_load_dynamic_template', 'load_dynamic_template');
 
 
 /// end of them loading 
+
+/// start functions for saved them edit with elementor 
+
+function hamyvosugh_enqueue_scripts() {
+    // Enqueue parent and child styles
+    $parent_style = 'hello-elementor-style';
+    wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
+    wp_enqueue_style('hamyvosugh-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style));
+
+    // Enqueue any additional scripts or styles here
+}
+add_action('wp_enqueue_scripts', 'hamyvosugh_enqueue_scripts');
