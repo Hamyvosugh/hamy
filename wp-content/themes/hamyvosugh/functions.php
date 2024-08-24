@@ -83,7 +83,7 @@ function enqueue_custom_scripts() {
     // Register and enqueue your custom JavaScript file
     wp_enqueue_script(
         'custom-load-template', 
-        get_template_directory_uri() . '/assets/js/load-template.js', 
+        get_template_directory_uri() . '/hamyvosugh/assets/js/load-template.js', 
         array('jquery'), 
         null, 
         true 
